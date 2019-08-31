@@ -15,8 +15,10 @@ extension UIWindow {
     static var sb: UIWindow? {
         // We use a non-public key here to obtain the `statusBarWindow` window.
         // We have been using it in real world app and it won't be rejected by the review team for using this key.
-        let s = "status", b = "Bar", w = "Window"
-        return UIApplication.shared.value(forKey: s+b+w) as? UIWindow
+        //Fix iOS 13 crash because KVC
+        //let s = "status", b = "Bar", w = "Window"
+        //return UIApplication.shared.value(forKey: s+b+w) as? UIWindow
+        return UIApplication.shared.windows.first
     }
 
     /// Changes the windows' visibility with custom behavior
